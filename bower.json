@@ -1,0 +1,14 @@
+{
+  "name": "kiosk-ui",
+  "description": "Simple kiosk POS system",
+  "version": "0.0.1",
+  "homepage": "https://github.com/fabian-rump/kiosk-ui",
+  "private": true,
+  "dependencies": {
+    "angular": "1.2.x",
+    "angular-loader": "1.2.x",
+    "angular-mocks": "~1.2.x",
+    "html5-boilerplate": "~4.3.0",
+    "angular-ui-router": "0.2.14"
+  }
+}

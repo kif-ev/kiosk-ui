@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="kiosk-ui" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <title>KioskUI</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+  <!-- The main layout -->
+  <div id="topbar"><div id="topbar-content"><span id="username"></span><span id="userbalance"></span></div></div>
+  <div id="main" ui-view><div id="cart"></div></div>
+  <div id="bottombar"><div id="bottombar-content"><span id="inputtext"></span><span id="totalprice"></span></div></div>
+
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="common/common.js"></script>
+  <script src="common/model/cart-item.js"></script>
+  <script src="common/service/cart.js"></script>
+  <script src="common/model/product.js"></script>
+  <script src="selfservice/selfservice.js"></script>
+  <script src="selfservice/directive/keydown.js"></script>
+  <script src="selfservice/controller/start.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
