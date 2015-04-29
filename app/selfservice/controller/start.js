@@ -20,13 +20,7 @@ selfservice.controller('SelfserviceStartController', ['$scope', 'CartService', '
     $scope.products;
     Product.getAllProducts()
       .success(function (products) {
-        result = Product.checkIfValid(products);
-        if(result == true){
-          $scope.products = products;
-        }
-        else{
-          // Error handling
-        }
+        $scope.products = Product.fromJsonArray(products);
       });
   }]
 );

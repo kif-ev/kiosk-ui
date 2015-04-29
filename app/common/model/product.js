@@ -48,5 +48,37 @@ common.factory('Product', ['$http', function ($http) {
     }
   }
 
+  Product.fromJson = function(entity) {
+
+    // Check JSON for validity and return null if invalid
+    if(!Product.checkIfValid(entity)) {
+      return null;
+    }
+
+    // Return object from JSON values
+    return new Product(entity.id, entity.name, entity.quantity, entity.available_quantity, entity.pricings);
+  }
+
+  Product.fromJsonArray = function(entity) {
+
+    // Array to store results
+    var result = new Array();
+
+    // Iterate through all values
+    for(var i = 0; i < entity.length; i++) {
+
+      // If one item is invalid, return null immediately
+      item = Product.fromJson(entity[i]);
+      if(item == null) {
+        return null;
+      }
+
+      // Push the item to the result array
+      result.push(item);
+    }
+
+    return result;
+  }
+
   return Product;
 }]);
