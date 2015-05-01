@@ -1,8 +1,6 @@
 var common = angular.module('kiosk-ui.common');
 
-common.factory('Product', ['$http', function ($http) {
-
-  var base_url = 'https://oskiosk.herokuapp.com:443/'
+common.factory('Product', function () {
 
   function Product(id, name, quantity, available_quantity, pricings) {
     this.type = "product";
@@ -13,63 +11,57 @@ common.factory('Product', ['$http', function ($http) {
     this.pricings = pricings;
   }
 
-  Product.getProduct = function(id) {
-    return $http.get(base_url + 'products/' + id + '.json');
+  Product.prototype.isValid = function() {
+    // TODO: Check for empty names etc.
+    if(this.type === 'undefined' ||
+       this.type != 'product' ||
+       this.id === 'undefined' ||
+       this.name === 'undefined' ||
+       this.quantity === 'undefined' ||
+       this.available_quantity === 'undefined' ||
+       this.pricings === 'undefined') {
+         console.log('Invalid product entity: ' + this);
+         return false;
+     }
+     else {
+       return true;
+     }
   }
 
-  Product.getAllProducts = function() {
-    return $http.get(base_url + 'products.json');
-  }
+  // Static method to create a product entity from a JSON string
+  Product.fromJsonSingle = function(data) {
 
-  Product.checkIfValid = function(entity) {
-    // If entity is an array, iterate through all elements and check them
-    if(entity instanceof Array) {
-      for(var i = 0; i < entity.length; i++) {
-        result = Product.checkIfValid(entity[i]);
-        if(result == false) return false;
-      }
-      // If all checks succeeded, return true
-      return true;
-    }
-    // Else entity is a single object that should be checked
-    {
-      if(entity.type === 'undefined' ||
-         entity.type != 'product' ||
-         entity.id === 'undefined' ||
-         entity.name === 'undefined' ||
-         entity.quantity === 'undefined' ||
-         entity.available_quantity === 'undefined' ||
-         entity.pricings === 'undefined') {
-           return false;
-         }
-         else {
-           return true;
-         }
-    }
-  }
+    // Deserialized input data
+    var input = angular.fromJson(data);
 
-  Product.fromJson = function(entity) {
+    // Create new product from input
+    var item = new Product(input.id, input.name, input.quantity, input.available_quantity, input.pricings);
 
-    // Check JSON for validity and return null if invalid
-    if(!Product.checkIfValid(entity)) {
+    // Check validity
+    if(!item.isValid()) {
       return null;
     }
 
-    // Return object from JSON values
-    return new Product(entity.id, entity.name, entity.quantity, entity.available_quantity, entity.pricings);
+    return item;
   }
 
-  Product.fromJsonArray = function(entity) {
+  // Static method to create an array of multiple product entities from a JSON string
+  Product.fromJsonMultiple = function(data) {
+
+    // Deserialized input data
+    var input = angular.fromJson(data);
 
     // Array to store results
     var result = new Array();
 
     // Iterate through all values
-    for(var i = 0; i < entity.length; i++) {
+    for(var i = 0; i < input.length; i++) {
+
+      // Create new product from input
+      var item = new Product(input[i].id, input[i].name, input[i].quantity, input[i].available_quantity, input[i].pricings);
 
       // If one item is invalid, return null immediately
-      item = Product.fromJson(entity[i]);
-      if(item == null) {
+      if(!item.isValid()) {
         return null;
       }
 
@@ -81,4 +73,4 @@ common.factory('Product', ['$http', function ($http) {
   }
 
   return Product;
-}]);
+});

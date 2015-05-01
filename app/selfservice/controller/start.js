@@ -2,14 +2,26 @@
 
 var selfservice = angular.module('kiosk-ui.selfservice');
 
-selfservice.controller('SelfserviceStartController', ['$scope', 'CartService', 'CartItem','Product',
-  function($scope, CartService, CartItem, Product) {
-    $scope.inputText = '';
+selfservice.controller('SelfserviceStartController', ['$scope', '$state', 'CartService', 'CartItem', 'Product', 'ProductService', 'Customer', 'IdentifierService',
+  function($scope, $state, CartService, CartItem, Product, ProductService, Customer, IdentifierService) {
 
-    // Input test
-    $scope.onInput = function(character) {
-      $scope.inputText += character;
+    $scope.onIncrease = function() {
+      // There is nothing to do here
     };
+
+    $scope.onDecrease = function() {
+      // There is nothing to do here
+    };
+
+    // Add typed characters to inout
+    $scope.onInput = function(character) {
+      $scope.addInputCharacter(character);
+    };
+
+    // Submit current input
+    $scope.onConfirm = function() {
+      $scope.submitInput();
+    }
 
     // Cart test
     $scope.items = CartService.getAllItems();
@@ -18,9 +30,9 @@ selfservice.controller('SelfserviceStartController', ['$scope', 'CartService', '
 
     // Products test
     $scope.products;
-    Product.getAllProducts()
+    ProductService.getAllProducts()
       .success(function (products) {
-        $scope.products = Product.fromJsonArray(products);
+        $scope.products = products;
       });
   }]
 );
