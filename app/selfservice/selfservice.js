@@ -38,12 +38,20 @@ angular.module('kiosk-ui.selfservice', [
 
         .state('selfservice.productinfo', {
 
-          // Make this state the "home" state
           url: '/productinfo/:productId',
 
           // Template and controller settings
           templateUrl: 'selfservice/template/productinfo.html',
           controller: 'SelfserviceProductinfoController'
+        })
+
+        .state('selfservice.purchase', {
+
+          url: '/purchase/:user_id/:user_name',
+
+          // Template and controller settings
+          templateUrl: 'selfservice/template/purchase.html',
+          controller: 'SelfservicePurchaseController'
         })
     }
   ]

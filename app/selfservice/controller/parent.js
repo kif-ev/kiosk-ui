@@ -2,11 +2,12 @@
 
 var selfservice = angular.module('kiosk-ui.selfservice');
 
-selfservice.controller('SelfserviceParentController', ['$scope', '$state', 'CartService', 'CartItem', 'Product', 'ProductService', 'Customer', 'IdentifierService',
-  function($scope, $state, CartService, CartItem, Product, ProductService, Customer, IdentifierService) {
+selfservice.controller('SelfserviceParentController', ['$scope', '$state', 'CartService', 'CartItem', 'Cart', 'Product', 'ProductService', 'Customer', 'IdentifierService',
+  function($scope, $state, CartService, CartItem, Cart, Product, ProductService, Customer, IdentifierService) {
 
     // Variable to contain the barcode/keyboard input
     $scope.inputText = '';
+    $scope.cart = new Cart();
 
     // Add typed character to the input text
     $scope.addInputCharacter = function(character) {
@@ -27,7 +28,7 @@ selfservice.controller('SelfserviceParentController', ['$scope', '$state', 'Cart
             $state.go('selfservice.productinfo', {'productId': item.id});
           }
           else if(item.type == 'customer') {
-            console.log('Hello ' + item.name);
+            $state.go('selfservice.purchase', {'user_id': item.id, 'user_name': item.name});
           }
 
         });
