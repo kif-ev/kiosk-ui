@@ -25,7 +25,17 @@ selfservice.controller('SelfserviceParentController', ['$scope', '$state', 'Cart
           }
 
           if(item.type == 'product') {
-            $state.go('selfservice.productinfo', {'productId': item.id});
+            if($scope.cart.user_id === undefined) {
+              // If no user is logged in, just show the product info
+              $state.go('selfservice.productinfo', {'productId': item.id});
+            }
+            else {
+              // Else add the product to the cart
+              var pr = item.getLowestAvailablePricing();
+              var it = new CartItem(pr.id, item.name, 1, pr.price);
+              $scope.cart.addItem(it);
+            }
+
           }
           else if(item.type == 'customer') {
             $state.go('selfservice.purchase', {'user_id': item.id, 'user_name': item.name});

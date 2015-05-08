@@ -22,7 +22,7 @@ angular.module('kiosk-ui', [
     function ($stateProvider,   $urlRouterProvider, $httpProvider) {
 
       // HTTP configuration
-      $httpProvider.defaults.headers.common.Authorization = 'Bearer c02b4e4756ecab6837f1954c54ed7a36e1ec6f0bf07984829b39241dfdfdabc8'
+      $httpProvider.defaults.headers.common.Authorization = 'Bearer 29f0d0db6ae0bbc83c5ee83e120d6ff17f98f47914c47d0bf251671503e9d73c'
 
       // Redirect all invalid URLs to the default state
       $urlRouterProvider.otherwise('/');

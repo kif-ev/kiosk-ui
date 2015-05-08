@@ -1,16 +1,6 @@
 var common = angular.module('kiosk-ui.common');
 
-common.service('CartService', function() {
+common.service('CartService', ['Cart', 'CartItem',  function(Cart,CartItem) {
 
-  this.cart_items = new Array();
-
-  // Add a new item to the cart
-  this.addItem = function(item) {
-    this.cart_items.push(item);
-  };
-
-  // Get a list of all items
-  this.getAllItems = function() {
-    return this.cart_items;
-  };
-});
+  
+}]);

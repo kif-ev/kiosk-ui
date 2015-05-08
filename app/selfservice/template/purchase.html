@@ -1,2 +1,6 @@
 <h2>Purchase Test</h2>
 <div>{{user_name}}</div>
+
+<ul>
+  <li ng-repeat="item in cart.cart_items">{{item.quantity}}x {{item.product_name}} {{item.unit_price/100 | currency:"€ "}}</li>
+</ul>

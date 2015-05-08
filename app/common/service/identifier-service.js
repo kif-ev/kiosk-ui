@@ -3,7 +3,7 @@ var common = angular.module('kiosk-ui.common');
 common.service('IdentifierService', ['$http', 'Product', 'Customer',
   function($http, Product, Customer) {
 
-  var base_url = 'https://oskiosk.herokuapp.com:443/'
+  var base_url = 'http://localhost:3000/'
 
   this.getItemFromIdentifier = function(identifier) {
     return $http.get(base_url + 'identifiers/' + identifier + '.json', {

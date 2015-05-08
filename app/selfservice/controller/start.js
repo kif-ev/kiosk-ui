@@ -23,16 +23,5 @@ selfservice.controller('SelfserviceStartController', ['$scope', '$state', 'CartS
       $scope.submitInput();
     }
 
-    // Cart test
-    $scope.items = CartService.getAllItems();
-    var item = new CartItem(1,'Testitem',1,0.50);
-    CartService.addItem(item);
-
-    // Products test
-    $scope.products;
-    ProductService.getAllProducts()
-      .success(function (products) {
-        $scope.products = products;
-      });
   }]
 );

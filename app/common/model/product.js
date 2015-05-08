@@ -1,6 +1,6 @@
 var common = angular.module('kiosk-ui.common');
 
-common.factory('Product', function () {
+common.factory('Product', ['Pricing', function (Pricing) {
 
   function Product(id, name, quantity, available_quantity, pricings) {
     this.type = "product";
@@ -8,7 +8,7 @@ common.factory('Product', function () {
   	this.name = name;
   	this.quantity = quantity;
   	this.available_quantity = available_quantity;
-    this.pricings = pricings;
+    this.pricings = Pricing.fromJsonMultiple(pricings);
   }
 
   Product.prototype.isValid = function() {
@@ -26,6 +26,21 @@ common.factory('Product', function () {
      else {
        return true;
      }
+  }
+
+  // Get the cheapest available pricing, i.e. available_quantity > 0
+  Product.prototype.getLowestAvailablePricing = function () {
+
+    var result = null;
+
+    // Iterate through all values
+    for(var i = 0; i < this.pricings.length; i++) {
+      if(result == null || (this.pricings[i].price < result.price && this.pricings[i].available_quantity > 0)) {
+        result = this.pricings[i];
+      }
+    }
+
+    return result;
   }
 
   // Static method to create a product entity from a JSON string
@@ -73,4 +88,4 @@ common.factory('Product', function () {
   }
 
   return Product;
-});
+}]);
