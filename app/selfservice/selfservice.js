@@ -1,4 +1,5 @@
 angular.module('kiosk-ui.selfservice', [
+  'kiosk-ui.config',
   'kiosk-ui.common',
   'ui.router',
   'ui.bootstrap'
@@ -18,22 +19,29 @@ angular.module('kiosk-ui.selfservice', [
           // Base URL for this state and all substates
           url: '/selfservice',
 
-          // Wrapper template which is used for all "substates"
-          templateUrl: 'selfservice/selfservice.html',
-
-          // Parent controller is active in all child states
-          controller: 'SelfserviceParentController'
+          views: {
+            '': {
+              templateUrl: 'selfservice/selfservice.html',
+              controller: 'SelfserviceParentController'
+            },
+            'statusbar@selfservice': {
+              templateUrl: 'selfservice/template/statusbar.html',
+              controller: 'SelfserviceStatusbarController'
+            }
+          }
         })
 
-
         .state('selfservice.start', {
-
-          // Make this state the "home" state
           url: '',
-
-          // Template and controller settings
-          templateUrl: 'selfservice/template/start.html',
-          controller: 'SelfserviceStartController'
+          views: {
+            '': {
+              templateUrl: 'selfservice/template/start.html',
+              controller: 'SelfserviceStartController'
+            },
+            'navbar@selfservice': {
+              templateUrl: 'selfservice/template/navbar-start.html'
+            }
+          }
         })
 
         .state('selfservice.productinfo', {
@@ -46,13 +54,18 @@ angular.module('kiosk-ui.selfservice', [
         })
 
         .state('selfservice.purchase', {
-
-          url: '/purchase/:user_id/:user_name',
-
-          // Template and controller settings
-          templateUrl: 'selfservice/template/purchase.html',
-          controller: 'SelfservicePurchaseController'
+          url: '/purchase',
+          views: {
+            '': {
+              templateUrl: 'selfservice/template/purchase.html',
+              controller: 'SelfservicePurchaseController'
+            },
+            'navbar@selfservice': {
+              templateUrl: 'selfservice/template/navbar-purchase.html'
+            }
+          }
         })
+
     }
   ]
 );

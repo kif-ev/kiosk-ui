@@ -1,9 +1,9 @@
 var common = angular.module('kiosk-ui.common');
 
-common.service('ProductService', ['$http','Product',
-  function($http,Product) {
+common.service('ProductService', ['$http','AppConfig', 'Product',
+  function($http, AppConfig, Product) {
 
-  var base_url = 'http://localhost:3000/'
+  var base_url = AppConfig.backend;
 
   // Get all available products
   this.getAllProducts = function() {

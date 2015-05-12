@@ -2,6 +2,8 @@
 
 // Main module and dependencies definition
 angular.module('kiosk-ui', [
+  'kiosk-ui.config',
+  'kiosk-ui.common',
   'kiosk-ui.selfservice',
   'ui.router',
 ])
@@ -18,11 +20,11 @@ angular.module('kiosk-ui', [
 )
 
 .config(
-  [          '$stateProvider', '$urlRouterProvider', '$httpProvider',
-    function ($stateProvider,   $urlRouterProvider, $httpProvider) {
+  [          '$stateProvider', '$urlRouterProvider', '$httpProvider', 'AppConfig',
+    function ($stateProvider,   $urlRouterProvider, $httpProvider, AppConfig) {
 
       // HTTP configuration
-      $httpProvider.defaults.headers.common.Authorization = 'Bearer 29f0d0db6ae0bbc83c5ee83e120d6ff17f98f47914c47d0bf251671503e9d73c'
+      $httpProvider.defaults.headers.common.Authorization = AppConfig.token;
 
       // Redirect all invalid URLs to the default state
       $urlRouterProvider.otherwise('/');
@@ -31,12 +33,7 @@ angular.module('kiosk-ui', [
       $stateProvider
         .state("home", {
           url: "/",
-          template: '<p class="lead">Welcome to the UI-Router Demo</p>' +
-            '<p>Use the menu above to navigate. ' +
-            'Pay attention to the <code>$state</code> and <code>$stateParams</code> values below.</p>' +
-            '<p>Click these links—<a href="#/c?id=1">Alice</a> or ' +
-            '<a href="#/user/42">Bob</a>—to see a url redirect in action.</p>'
-
+          template: ''
         })
     }
   ]

@@ -1,9 +1,9 @@
 var common = angular.module('kiosk-ui.common');
 
-common.service('IdentifierService', ['$http', 'Product', 'Customer',
-  function($http, Product, Customer) {
+common.service('IdentifierService', ['$http', 'AppConfig', 'Product', 'Customer',
+  function($http, AppConfig, Product, Customer) {
 
-  var base_url = 'http://localhost:3000/'
+  var base_url = AppConfig.backend;
 
   this.getItemFromIdentifier = function(identifier) {
     return $http.get(base_url + 'identifiers/' + identifier + '.json', {

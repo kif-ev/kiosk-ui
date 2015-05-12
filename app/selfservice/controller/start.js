@@ -2,8 +2,10 @@
 
 var selfservice = angular.module('kiosk-ui.selfservice');
 
-selfservice.controller('SelfserviceStartController', ['$scope', '$state', 'CartService', 'CartItem', 'Product', 'ProductService', 'Customer', 'IdentifierService',
-  function($scope, $state, CartService, CartItem, Product, ProductService, Customer, IdentifierService) {
+selfservice.controller('SelfserviceStartController', ['$scope', '$state', 'CartService', 'CartItem', 'Product', 'ProductService', 'Customer', 'IdentifierService', 'KeypadInputService',
+  function($scope, $state, CartService, CartItem, Product, ProductService, Customer, IdentifierService, KeypadInputService) {
+
+    KeypadInputService.setScope($scope);
 
     $scope.onIncrease = function() {
       // There is nothing to do here
@@ -20,8 +22,16 @@ selfservice.controller('SelfserviceStartController', ['$scope', '$state', 'CartS
 
     // Submit current input
     $scope.onConfirm = function() {
-      $scope.submitInput();
+      if($scope.input_text){
+        $scope.submitInput();
+      }
     }
+
+    // Abort
+    $scope.onCancel = function() {
+      // Just reset the input, since there is nothing else to abort
+      $scope.resetInput();
+    };
 
   }]
 );

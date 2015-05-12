@@ -1,6 +1,14 @@
-<h2>Purchase Test</h2>
-<div>{{user_name}}</div>
+<div class="text-center help-container" ng-if="!cart.cart_items.length">
+  <h1>Hello {{user_name}}!</h1>
+  <p>Please scan your products to add them to your shopping cart.</p>
+  <img src="assets/basket.svg" class="help-image"></img>
+</div>
 
-<ul>
-  <li ng-repeat="item in cart.cart_items">{{item.quantity}}x {{item.product_name}} {{item.unit_price/100 | currency:"€ "}}</li>
-</ul>
+
+<table class="table">
+  <tr ng-repeat="item in cart.cart_items">
+    <td class="column-item-product-name">{{item.product_name}}</td>
+    <td class="column-item-quantity-price">{{displayItemQuantityAndPrice(item)}}</td>
+    <td class="column-item-total-price">{{displayItemTotalPrice(item)}}</td>
+  </tr>
+</table>

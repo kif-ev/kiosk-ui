@@ -1,5 +1,4 @@
-<h2>Product Info</h2>
-<div>{{product.name}}</div>
+<h1>Product info - {{product.name}}</h1>
 
 <ul>
   <li ng-repeat="pricing in product.pricings">{{pricing.price/100 | currency:"€ "}} ({{pricing.available_quantity}} available)</li>

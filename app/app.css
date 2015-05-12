@@ -1,62 +1,19 @@
 body {
+	/*
 	margin: 0px;
 	margin-top: 11vh;
 	margin-bottom: 11vh;
 	font-family: sans-serif;
+	*/
 }
 
-#topbar {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	height: 10vh;
-	margin-left: 1vw;
-	margin-right: 1vw;
-	padding-left: 1vw;
-	padding-right: 1vw;
-	background: linear-gradient(#E7803A,#FFA86C);
-	display: block;
-    border-radius: 1vmin;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    box-shadow: 3px 3px 5px #888888;
-    z-index: 10;
-}
-
-#bottombar {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	height: 10vh;
-	margin-left: 0vw;
-	margin-right: 0vw;
-	padding-left: 1vw;
-	padding-right: 1vw;
-	background: #DDDDDD;
-	display: block;
-  box-shadow: 0px -4px 8px #BBBBBB;
-  z-index: 10;
-}
-
-#topbar-content {
-	width: 100%;
-	height: 100%;
-	margin: 0px;
-	padding: 0px;
-	display: table;
-}
-
-#bottombar-content {
-	width: 100%;
-	height: 100%;
-	margin: 0px;
-	padding: 0px;
-	display: table;
-}
-
-#main {
+.selfservice-wrapper,
+.selfservice-wrapper h1,
+.selfservice-wrapper h2,
+.selfservice-wrapper h3,
+.selfservice-wrapper h4,
+.selfservice-wrapper h5 {
+	/*
 	left: 0;
 	right: 0;
 	margin-left: 1vw;
@@ -64,109 +21,72 @@ body {
 	height: 78vh;
 	position: relative;
 	z-index: 0;
+	*/
+	font-size: 3.5vh;
 }
 
-#username {
-	color: #FFF;
-	font-size: 7vh;
-	display: table-cell;
-	vertical-align: middle;
+.selfservice-wrapper nav {
+	height: 10vh;
+	font-size: 3.5vh;
+	min-height: 10vh;
 }
 
-#userbalance {
-	color: #FFF;
-	font-size: 7vh;
-	display: table-cell;
-	vertical-align: middle;
+.selfservice-wrapper nav div {
+	font-size: 3.5vh;
+}
+
+.selfservice-wrapper nav button {
+	height: 8vh;
+	margin-top: 1vh;
+	margin-bottom: 1vh;
+	font-size: 3.5vh;
+}
+
+.selfservice-wrapper nav input {
+	height: 8vh;
+	margin-top: 1vh;
+	margin-bottom: 1vh;
+	font-size: 3.5vh;
+}
+
+.selfservice-wrapper nav button kbd {
+
+}
+
+.selfservice-wrapper .progress {
+	height: 6vh;
+	border-radius: 0;
+}
+
+.selfservice-wrapper .progress .progress-bar {
+	font-size: 3.5vh;
+	line-height: 5vh;
+}
+
+.selfservice-wrapper .table {
+
+}
+
+.selfservice-wrapper .column-item-product-name {
+	width: 60vw;
+}
+
+.selfservice-wrapper .column-item-quantity-price {
+	width: 20vw;
+	font-style: italic;
 	text-align: right;
 }
 
-#inputtext {
-	color: #FFF;
-	font-size: 7vh;
-	display: table-cell;
-	vertical-align: middle;
-}
-
-#totalprice {
-	color: #FFF;
-	font-size: 7vh;
-	display: table-cell;
-	vertical-align: middle;
+.selfservice-wrapper .column-item-total-price {
+	width: 20vw;
+	font-weight: bold;
 	text-align: right;
-	width: 15vw;
 }
 
-#cart {
-	position: absolute;
-	left: 0;
-	bottom: 0;
-	width: 100%;
-	font-size: 3vw;
+.selfservice-wrapper .help-container {
+	margin-top: 15vh;
 }
 
-#cart div {
-	width: 100%;
-	display: table;
-}
-
-.item-quantity {
-	display: table-cell;
-	width: 7vw;
-}
-
-.item-name {
-	display: table-cell;
-}
-
-.item-price {
-	display: table-cell;
-	text-align: right;
-	width: 13vw;
-}
-
-#throbber {
-	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-	margin: auto;
-	width: 10vmin;
-	height: 10vmin;
-	background-image: url(../images/throbber.svg);
-	background-size: 100%;
-	background-repeat: no-repeat;
-	display: none;
-}
-
-#errorbox {
-	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-	margin: auto;
-	padding: 1vmin;
-	width: 40vw;
-	height: 40vh;
-	border-radius: 1vmin;
-	background-color: rgba(255,0,0,0.7);
-	display: none;
-}
-
-#errorbox-content {
-	width: 100%;
-	height: 100%;
-	margin: 0px;
-	padding: 0px;
-	display: table;
-}
-
-#error-message {
-	color: #FFF;
-	font-size: 7vmin;
-	display: table-cell;
-	vertical-align: middle;
-	text-align: center;
+.selfservice-wrapper .help-image {
+	height: 45vh;
 }

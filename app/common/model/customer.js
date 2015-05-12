@@ -22,7 +22,7 @@ common.factory('Customer', function () {
      }
   }
 
-  // Static method to create a product entity from a JSON string
+  // Static method to create a customer entity from a JSON string
   Customer.fromJson = function(data) {
 
     // Deserialized input data

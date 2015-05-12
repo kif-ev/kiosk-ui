@@ -2,14 +2,28 @@
 
 var selfservice = angular.module('kiosk-ui.selfservice');
 
-selfservice.controller('SelfservicePurchaseController', ['$scope', '$stateParams', '$state',
-  function($scope, $stateParams, $state) {
+selfservice.controller('SelfservicePurchaseController', ['$scope', '$state', 'KeypadInputService',
+  function($scope, $state, KeypadInputService) {
 
-    $scope.cart.setUser($stateParams.user_id);
-    $scope.user_name = $stateParams.user_name;
+    KeypadInputService.setScope($scope);
+
+    // Quantity display format
+    $scope.displayItemQuantityAndPrice = function(item) {
+      if(item.quantity <= 1){
+        return '';
+      }
+      else {
+        return item.quantity + 'x ' + (item.unit_price/100).toFixed(2) + '€';
+      }
+    }
+
+    // Total price format
+    $scope.displayItemTotalPrice = function(item) {
+      return (item.unit_price*item.quantity/100).toFixed(2) + '€';
+    }
 
     $scope.onIncrease = function() {
-      // There is nothing to do here
+      $scope.increaseLastQuantity();
     };
 
     $scope.onDecrease = function() {
@@ -23,7 +37,27 @@ selfservice.controller('SelfservicePurchaseController', ['$scope', '$stateParams
 
     // Submit current input
     $scope.onConfirm = function() {
-      $scope.submitInput();
+      if($scope.input_text){
+        $scope.submitInput();
+      }
+      else {
+        $scope.doCheckout();
+      }
+    };
+
+    // Abort
+    $scope.onCancel = function() {
+      if($scope.input_text){
+        $scope.resetInput();
+      }
+      else{
+        $scope.resetState();
+      }
+    };
+
+    // If user is not defined, go back to start state
+    if(!$scope.cart.user_id) {
+      $state.go('selfservice.start');
     }
 
   }]

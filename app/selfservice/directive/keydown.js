@@ -75,6 +75,10 @@ selfservice.directive('keydown', function() {
           // MINUS key on NUMPAD
           scope.$apply(scope.onDecrease());
           break;
+				case 106:
+						// MULTIPLY key on NUMPAD
+						scope.$apply(scope.onCancel());
+						break;
         default:
           // Numbers typed by user or barcode scanner
           var character = KeyCodes[event.keyCode];

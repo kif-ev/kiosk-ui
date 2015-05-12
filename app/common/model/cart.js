@@ -1,6 +1,6 @@
 var common = angular.module('kiosk-ui.common');
 
-common.factory('Cart', function () {
+common.factory('Cart', ['CartItem', function (CartItem) {
 
   function Cart() {
     this.type = "cart";
@@ -19,15 +19,19 @@ common.factory('Cart', function () {
      }
   }
 
-  Cart.prototype.setUser = function(id) {
-    this.user_id = id;
+  Cart.prototype.setId = function(id) {
+    this.id = id;
   }
 
-  Cart.prototype.getItem = function(id) {
+  Cart.prototype.setUser = function(user_id) {
+    this.user_id = user_id;
+  }
+
+  Cart.prototype.getItem = function(pricing_id) {
     // Search through all items and return first item matching the id
     for(var i = 0; i < this.cart_items.length; i++) {
-      if(this.cart_items[i].id == id) {
-        return this.cart_items[i].id;
+      if(this.cart_items[i].pricing_id == pricing_id) {
+        return this.cart_items[i];
       }
     }
 
@@ -35,10 +39,10 @@ common.factory('Cart', function () {
     return null;
   }
 
-  Cart.prototype.getItemIndex = function(id) {
+  Cart.prototype.getItemIndex = function(pricing_id) {
     // Search through all items and return index of the first item matching the id
     for(var i = 0; i < this.cart_items.length; i++) {
-      if(this.cart_items[i].id == id) {
+      if(this.cart_items[i].pricing_id == pricing_id) {
         return i;
       }
     }
@@ -50,7 +54,7 @@ common.factory('Cart', function () {
   // Add a new item to the cart
   Cart.prototype.addItem = function(item) {
     //TODO: Check that only cart items can be added
-    var index = this.getItemIndex(item.id);
+    var index = this.getItemIndex(item.pricing_id);
     // If this pricing already is in the cart, aggregate the quantities
     if(index != null){
       item.quantity += this.cart_items[index].quantity;
@@ -64,5 +68,30 @@ common.factory('Cart', function () {
     return this.cart_items;
   };
 
+  // Serialize cart i.e. for sending it to the backend
+  Cart.prototype.toJson = function() {
+    return angular.toJson(this);
+  }
+
+  // Static method to create a cart entity from a JSON string
+  Cart.fromJson = function(data) {
+
+    // Deserialized input data
+    var input = angular.fromJson(data);
+
+    // Create new cart from input
+    var cart = new Cart();
+    cart.setId(input.id);
+    cart.setUser(input.user_id);
+    cart.cart_items = CartItem.fromJsonMultiple(input.cart_items);
+
+    // Check validity
+    if(!cart.isValid()) {
+      return null;
+    }
+
+    return cart;
+  }
+
   return Cart;
-});
+}]);
