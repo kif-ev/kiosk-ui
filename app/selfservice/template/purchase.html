@@ -1,5 +1,6 @@
 <div class="text-center help-container" ng-if="!cart.cart_items.length">
-  <h1>Hello {{user_name}}!</h1>
+  <h1>Hello {{user.name}}!</h1>
+  <p>Your account balance is currently:<br/><span class="text-info">{{displayBalance(user.balance)}}</span></p>
   <p>Please scan your products to add them to your shopping cart.</p>
   <img src="assets/basket.svg" class="help-image"></img>
 </div>
@@ -10,5 +11,10 @@
     <td class="column-item-product-name">{{item.product_name}}</td>
     <td class="column-item-quantity-price">{{displayItemQuantityAndPrice(item)}}</td>
     <td class="column-item-total-price">{{displayItemTotalPrice(item)}}</td>
+  </tr>
+  <tr>
+    <td class="column-item-product-name"></td>
+    <td class="column-item-quantity-price"></td>
+    <td class="column-item-total-price">TOTAL {{displayTotalCartPrice()}}</td>
   </tr>
 </table>

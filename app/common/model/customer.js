@@ -2,10 +2,11 @@ var common = angular.module('kiosk-ui.common');
 
 common.factory('Customer', function () {
 
-  function Customer(id, name) {
+  function Customer(id, name, balance) {
     this.type = "customer";
   	this.id = id;
   	this.name = name;
+    this.balance = balance;
   }
 
   Customer.prototype.isValid = function() {
@@ -13,7 +14,8 @@ common.factory('Customer', function () {
     if(this.type === 'undefined' ||
        this.type != 'customer' ||
        this.id === 'undefined' ||
-       this.name === 'undefined') {
+       this.name === 'undefined' ||
+       this.balance === 'undefined') {
          console.log('Invalid customer entity: ' + this);
          return false;
      }
@@ -29,7 +31,7 @@ common.factory('Customer', function () {
     var input = angular.fromJson(data);
 
     // Create new product from input
-    var item = new Customer(input.id, input.name);
+    var item = new Customer(input.id, input.name, input.balance);
 
     // Check validity
     if(!item.isValid()) {

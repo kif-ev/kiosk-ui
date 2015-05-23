@@ -37,6 +37,9 @@ selfservice.controller('SelfserviceParentController', ['$scope', '$state', 'Cart
 
     // Checkout (pay) the current cart
     $scope.doCheckout = function() {
+      if(!$scope.cart.cart_items){
+        return;
+      }
       CartService.payCart($scope.cart)
         .success($scope.handlePayCartResponse)
         .error($scope.handlePayCartError);
@@ -86,7 +89,7 @@ selfservice.controller('SelfserviceParentController', ['$scope', '$state', 'Cart
         // Status display
         $scope.progress_class = 'progress-bar-success';
         $scope.progress_text = 'User ' + item.name + ' logged in';
-        $scope.user_name = item.name;
+        $scope.user = item;
         CartService.createCartForUserId(item.id)
           .success($scope.handleCreateCartResponse)
           .error($scope.handleCreateCartError);
@@ -154,8 +157,7 @@ selfservice.controller('SelfserviceParentController', ['$scope', '$state', 'Cart
         return;
       }
 
-      // TODO: Redirect to "confirmation" state
-      $scope.resetState();
+      $state.go('selfservice.end');
 
     }
 

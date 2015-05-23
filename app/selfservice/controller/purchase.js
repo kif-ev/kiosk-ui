@@ -17,9 +17,23 @@ selfservice.controller('SelfservicePurchaseController', ['$scope', '$state', 'Ke
       }
     }
 
+    // User balance format
+    $scope.displayBalance= function(value) {
+      return (value/100).toFixed(2) + '€';
+    }
+
     // Total price format
     $scope.displayItemTotalPrice = function(item) {
       return (item.unit_price*item.quantity/100).toFixed(2) + '€';
+    }
+
+    // Total price format
+    $scope.displayTotalCartPrice = function() {
+      var sum = 0;
+      for(var i=0; i<$scope.cart.cart_items.length; i++){
+        sum += $scope.cart.cart_items[i].unit_price*$scope.cart.cart_items[i].quantity;
+      }
+      return (sum/100).toFixed(2) + '€';
     }
 
     $scope.onIncrease = function() {
@@ -38,6 +52,17 @@ selfservice.controller('SelfservicePurchaseController', ['$scope', '$state', 'Ke
     // Submit current input
     $scope.onConfirm = function() {
       if($scope.input_text){
+
+        // TODO: This temporary hack should be done right
+        if($scope.input_text == 'CHECKOUT'){
+          $scope.doCheckout();
+          return;
+        }
+        if($scope.input_text == 'CANCEL'){
+          $scope.resetState();
+          return;
+        }
+
         $scope.submitInput();
       }
       else {

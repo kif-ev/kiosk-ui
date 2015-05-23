@@ -5,6 +5,7 @@ angular.module('kiosk-ui', [
   'kiosk-ui.config',
   'kiosk-ui.common',
   'kiosk-ui.selfservice',
+  'kiosk-ui.admin',
   'ui.router',
 ])
 
@@ -33,7 +34,7 @@ angular.module('kiosk-ui', [
       $stateProvider
         .state("home", {
           url: "/",
-          template: ''
+          templateUrl: 'app.html'
         })
     }
   ]

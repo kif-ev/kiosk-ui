@@ -66,6 +66,15 @@ angular.module('kiosk-ui.selfservice', [
           }
         })
 
+        .state('selfservice.end', {
+
+          url: '/productinfo/:productId',
+
+          // Template and controller settings
+          templateUrl: 'selfservice/template/end.html',
+          controller: 'SelfserviceEndController'
+        })
+
     }
   ]
 );
