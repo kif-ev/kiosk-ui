@@ -9,7 +9,6 @@ common.service('ProductService', ['$http','AppConfig', 'Product',
   this.getAllProducts = function() {
     return $http.get(base_url + 'products.json', {
       transformResponse: function (data, headers) {
-        alert(data);
         return Product.fromJsonMultiple(data);
       }
     });

@@ -21,6 +21,5 @@ admin.controller('AdminParentController', ['$scope', '$state', 'CartService', 'C
       }
     ];
 
-
   }]
 );

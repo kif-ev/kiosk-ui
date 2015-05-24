@@ -14,7 +14,7 @@ angular.module('kiosk-ui.admin', [
         .state('admin', {
 
           // Only children of this state may be activated, not the state itself
-          //abstract: true,
+          abstract: true,
 
           // Base URL for this state and all substates
           url: '/admin',
