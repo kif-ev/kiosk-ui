@@ -7,6 +7,8 @@ angular.module('kiosk-ui', [
   'kiosk-ui.selfservice',
   'kiosk-ui.admin',
   'ui.router',
+  'ui.bootstrap',
+  'ui.router.tabs'
 ])
 
 .run(

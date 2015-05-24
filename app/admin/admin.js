@@ -26,6 +26,32 @@ angular.module('kiosk-ui.admin', [
             }
           }
         })
+
+        .state('admin.customers', {
+
+          // Base URL for this state and all substates
+          url: '/customers',
+
+          views: {
+            '': {
+              templateUrl: 'admin/template/customers.html',
+              controller: 'AdminCustomersController'
+            }
+          }
+        })
+
+        .state('admin.products', {
+
+          // Base URL for this state and all substates
+          url: '/products',
+
+          views: {
+            '': {
+              templateUrl: 'admin/template/products.html',
+              controller: 'AdminProductsController'
+            }
+          }
+        })
     }
   ]
 );

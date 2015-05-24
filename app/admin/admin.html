@@ -1,18 +1,7 @@
 <!-- Layout will be populated by child views -->
 <div class="admin-wrapper">
 
-  <tabset>
-    <tab heading="Static title">Static content</tab>
-    <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disable="tab.disabled">
-      {{tab.content}}
-    </tab>
-    <tab select="alertMe()">
-      <tab-heading>
-        <i class="glyphicon glyphicon-bell"></i> Alert!
-      </tab-heading>
-      I've got an HTML heading, and a select callback. Pretty cool!
-    </tab>
-  </tabset>
+  <tabs data="admin_tabs" type="tabs"></tabs>
 
   <div ui-view></div>
 </div>
