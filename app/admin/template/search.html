@@ -1,0 +1,11 @@
+<ol class="breadcrumb">
+  <li><span class="glyphicon glyphicon-search"></span> Identifier search</li>
+</ol>
+
+<form ng-submit="doSearch()">
+  <div class="form-group">
+    <label for="search_text">Search product or customer by identifier</label>
+    <input type="text" class="form-control" id="search_text" ng-model="search_text" placeholder="Enter identifier" required>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>

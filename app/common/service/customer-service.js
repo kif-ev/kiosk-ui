@@ -1,8 +1,17 @@
 var common = angular.module('kiosk-ui.common');
 
-common.service('CustomerService', ['$http','Customer',
-  function($http,Customer) {
+common.service('CustomerService', ['$http', 'AppConfig', 'Customer',
+  function($http, AppConfig, Customer) {
 
-  // Currently there is no API for interacting with customers, so this is empty.
+    var base_url = AppConfig.backend;
+
+    // Get a customer by id
+    this.getCustomer = function(id) {
+      return $http.get(base_url + 'users/' + id + '.json', {
+        transformResponse: function (data, headers) {
+          return Customer.fromJson(data);
+        }
+      });
+    }
 
 }]);

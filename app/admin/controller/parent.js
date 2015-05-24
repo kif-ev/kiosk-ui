@@ -7,13 +7,12 @@ admin.controller('AdminParentController', ['$scope', '$state', 'CartService', 'C
 
     $scope.admin_tabs = [
       {
-        heading: 'Admin Home',
-        route:   'admin.start',
-        disabled: true
+        heading: 'Identifier Search',
+        route:   'admin.search'
       },
       {
         heading: 'Customers',
-        route:   'admin.customers'
+        route:   'admin.customers.list'
       },
       {
         heading: 'Products',

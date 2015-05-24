@@ -27,15 +27,79 @@ angular.module('kiosk-ui.admin', [
           }
         })
 
+        .state('admin.start', {
+
+          // Base URL for this state and all substates
+          url: '',
+
+          views: {
+            '': {
+              templateUrl: 'admin/template/start.html'
+            }
+          }
+        })
+
+        .state('admin.search', {
+
+          // Base URL for this state and all substates
+          url: '/search',
+
+          views: {
+            '': {
+              templateUrl: 'admin/template/search.html',
+              controller: 'AdminSearchController'
+            }
+          }
+        })
+
         .state('admin.customers', {
 
           // Base URL for this state and all substates
           url: '/customers',
+          abstract: true,
 
           views: {
             '': {
               templateUrl: 'admin/template/customers.html',
               controller: 'AdminCustomersController'
+            }
+          }
+        })
+
+        .state('admin.customers.list', {
+
+          // Base URL for this state and all substates
+          url: '',
+
+          views: {
+            '': {
+              templateUrl: 'admin/template/customer-list.html',
+            }
+          }
+        })
+
+        .state('admin.customers.details', {
+
+          // Base URL for this state and all substates
+          url: '/:customerId',
+
+          views: {
+            '': {
+              templateUrl: 'admin/template/customer-details.html',
+              controller: 'AdminCustomerDetailsController'
+            }
+          }
+        })
+
+        .state('admin.customers.deposit', {
+
+          // Base URL for this state and all substates
+          url: '/:customerId/deposit',
+
+          views: {
+            '': {
+              templateUrl: 'admin/template/customer-deposit.html',
+              controller: 'AdminCustomerDepositController'
             }
           }
         })

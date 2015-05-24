@@ -1,7 +1,13 @@
-<table class="table table-striped table-hover">
-  <tr ng-repeat="product in products" ng-click="details(product)">
-    <td>{{product.id}}</td><td>{{product.name}}</td>
-  </tr>
-</table>
+<ol class="breadcrumb">
+  <li><span class="glyphicon glyphicon-shopping-cart"></span> Products</li>
+</ol>
 
-foo
+<div class="row">
+  <div class="col-xs-12 col-md-12">
+    <table class="table table-striped table-hover">
+      <tr ng-repeat="product in products" ng-click="details(product)">
+        <td>{{product.id}}</td><td>{{product.name}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

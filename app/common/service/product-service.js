@@ -1,6 +1,6 @@
 var common = angular.module('kiosk-ui.common');
 
-common.service('ProductService', ['$http','AppConfig', 'Product',
+common.service('ProductService', ['$http', 'AppConfig', 'Product',
   function($http, AppConfig, Product) {
 
   var base_url = AppConfig.backend;

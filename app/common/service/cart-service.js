@@ -27,7 +27,7 @@ common.service('CartService', ['$http', 'AppConfig', 'Cart',
 
   this.payCart = function(cart) {
     var temp_data = {"cart_id": cart.id};
-    return $http.post(base_url + 'transactions.json', temp_data);
+    return $http.post(base_url + 'carts/' + cart.id + '/pay.json', temp_data);
   }
 
 }]);

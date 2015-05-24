@@ -68,7 +68,7 @@ angular.module('kiosk-ui.selfservice', [
 
         .state('selfservice.end', {
 
-          url: '/productinfo/:productId',
+          url: '/end',
 
           // Template and controller settings
           templateUrl: 'selfservice/template/end.html',

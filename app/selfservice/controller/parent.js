@@ -68,7 +68,9 @@ selfservice.controller('SelfserviceParentController', ['$scope', '$state', 'Cart
     $scope.handleProductResponse = function(item) {
       if($scope.cart.user_id === undefined) {
         // If no user is logged in, just show the product info
-        $state.go('selfservice.productinfo', {'productId': item.id});
+        //$state.go('selfservice.productinfo', {'productId': item.id});
+        $scope.progress_class = 'progress-bar-warning';
+        $scope.progress_text = 'Please login before scanning products.';
       }
       else {
         // Status display

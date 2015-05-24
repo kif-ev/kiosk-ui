@@ -1,0 +1,28 @@
+<ol class="breadcrumb">
+  <li><span class="glyphicon glyphicon-user"></span> <a ui-sref="admin.customers.list">Customers</a></li>
+  <li>{{customer.name}}</li>
+</ol>
+
+<div class="row">
+  <div class="col-xs-12 col-md-12">
+
+    <h2>{{customer.name}}</h2>
+
+    <h3><span class="glyphicon glyphicon-euro"></span> Account balance</h3>
+
+    {{displayBalance(customer.balance)}}
+
+    <h3><span class="glyphicon glyphicon-pencil"></span> Actions</h3>
+
+    <button ui-sref="admin.customers.deposit({customerId: customer.id})" class="btn btn-default">
+      <span class="glyphicon glyphicon-euro"></span>
+      Deposit money to account
+    </button>
+    
+    <button class="btn btn-default">
+      <span class="glyphicon glyphicon-list-alt"></span>
+      View past transactions
+    </button>
+
+  </div>
+</div>

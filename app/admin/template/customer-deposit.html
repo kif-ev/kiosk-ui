@@ -1,0 +1,29 @@
+<ol class="breadcrumb">
+  <li><span class="glyphicon glyphicon-user"></span> <a ui-sref="admin.customers.list">Customers</a></li>
+  <li><a ui-sref="admin.customers.details({customerId: customer.id})">{{customer.name}}</a></li>
+  <li>Deposit money</li>
+</ol>
+
+<div class="row">
+  <div class="col-xs-12 col-md-12">
+
+    <h2>Deposit money to {{customer.name}}</h2>
+
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+
+    <form name="deposit_form" ng-submit="doDeposit()">
+      <div class="form-group" ng-class="{'has-error': deposit_form.deposit_value.$invalid}">
+        <label for="deposit_value">Enter amount to add to customer account</label>
+        <div class="input-group">
+          <span class="input-group-addon">€</span>
+          <input type="number" class="form-control" name="deposit_value" ng-model="deposit_value" placeholder="0.00" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" required>
+        </div>
+        <span class="help-block" ng-show="deposit_form.deposit_value.$invalid">
+          Invalid number. Please edit.
+        </span>
+      </div>
+      <button type="submit" class="btn btn-default">Add to account</button>
+    </form>
+
+  </div>
+</div>

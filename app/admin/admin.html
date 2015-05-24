@@ -1,7 +1,16 @@
-<!-- Layout will be populated by child views -->
-<div class="admin-wrapper">
+<div class="admin-wrapper container">
 
-  <tabs data="admin_tabs" type="tabs"></tabs>
+  <div class="row">
+    <div class="col-xs-12 col-md-12">
+      <nav class="navbar navbar-default">
+        <a class="navbar-brand" ui-sref="admin.start"><span class="glyphicon glyphicon-dashboard"></span> KioskUI Administrator</a>
+        <ul class="nav navbar-nav">
+          <li ng-repeat="tab in admin_tabs"><a ui-sref="{{tab.route}}">{{tab.heading}}</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
 
+  <!-- Layout will be populated by child views -->
   <div ui-view></div>
 </div>

@@ -5,7 +5,7 @@ var admin = angular.module('kiosk-ui.admin');
 admin.controller('AdminProductsController', ['$scope', '$state', 'Product', 'ProductService', 'IdentifierService',
   function($scope, $state, Product, ProductService, IdentifierService) {
 
-    $scope.products
+    $scope.products;
 
     $scope.details = function(product) {
       alert(product.id);
