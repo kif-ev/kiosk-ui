@@ -9,7 +9,16 @@ common.service('CustomerService', ['$http', 'AppConfig', 'Customer',
     this.getCustomer = function(id) {
       return $http.get(base_url + 'users/' + id + '.json', {
         transformResponse: function (data, headers) {
-          return Customer.fromJson(data);
+          return Customer.fromJsonSingle(data);
+        }
+      });
+    }
+
+    // Get a customer by id
+    this.getAllCustomers = function() {
+      return $http.get(base_url + 'users.json', {
+        transformResponse: function (data, headers) {
+          return Customer.fromJsonMultiple(data);
         }
       });
     }

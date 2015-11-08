@@ -37,7 +37,7 @@ selfservice.controller('SelfserviceParentController', ['$scope', '$state', 'Cart
 
     // Checkout (pay) the current cart
     $scope.doCheckout = function() {
-      if(!$scope.cart.cart_items){
+      if(!$scope.cart.cart_items || $scope.cart.cart_items.length == 0){
         return;
       }
       CartService.payCart($scope.cart)
@@ -159,7 +159,7 @@ selfservice.controller('SelfserviceParentController', ['$scope', '$state', 'Cart
         return;
       }
 
-      $state.go('selfservice.end');
+      $state.go('selfservice.end', {'customerId': $scope.cart.user_id});
 
     }
 

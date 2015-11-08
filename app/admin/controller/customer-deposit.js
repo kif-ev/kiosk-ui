@@ -7,6 +7,8 @@ admin.controller('AdminCustomerDepositController', ['$scope', '$state', '$stateP
 
     $scope.alerts = [];
 
+    $scope.deposit_mode = 'deposit';
+
     $scope.closeAlert = function(index) {
       $scope.alerts.splice(index, 1);
     };
@@ -33,12 +35,27 @@ admin.controller('AdminCustomerDepositController', ['$scope', '$state', '$stateP
       alert("Something went wrong. I'm sorry.");
     }
 
-    $scope.doDeposit = function() {
+    $scope.doDeposit = function(value) {
       //if(!$scope.deposit_value.$valid) {
       //  $scope.alerts.push({type: 'danger', msg: 'Invalid deposit amount: ' + $scope.deposit_value});
       //  return;
       //}
-      DepositService.depositMoneyToCustomer($scope.customer.id, $scope.deposit_value*100)
+      var amount = 0;
+      if($scope.deposit_mode == 'deposit') {
+        amount = value*100;
+      }
+      else if($scope.deposit_mode == 'withdraw') {
+        amount = -value*100;
+      }
+
+      DepositService.depositMoneyToCustomer($scope.customer.id, amount)
+        .success($scope.handleDepositResponse)
+        .error($scope.handleDepositError);
+    }
+
+    $scope.doZeroAccount = function(value) {
+      var amount = -$scope.customer.balance;
+      DepositService.depositMoneyToCustomer($scope.customer.id, amount)
         .success($scope.handleDepositResponse)
         .error($scope.handleDepositError);
     }

@@ -2,10 +2,11 @@
 
 var selfservice = angular.module('kiosk-ui.selfservice');
 
-selfservice.controller('SelfservicePurchaseController', ['$scope', '$state', 'KeypadInputService',
-  function($scope, $state, KeypadInputService) {
+selfservice.controller('SelfservicePurchaseController', ['$scope', '$state', '$timeout', 'KeypadInputService',
+  function($scope, $state, $timeout, KeypadInputService) {
 
     KeypadInputService.setScope($scope);
+    $scope.confirm_blocked = false;
 
     // Quantity display format
     $scope.displayItemQuantityAndPrice = function(item) {
@@ -36,6 +37,10 @@ selfservice.controller('SelfservicePurchaseController', ['$scope', '$state', 'Ke
       return (sum/100).toFixed(2) + '€';
     }
 
+    $scope.unblockConfirm = function() {
+      $scope.confirm_blocked = false;
+    }
+
     $scope.onIncrease = function() {
       $scope.increaseLastQuantity();
     };
@@ -51,7 +56,15 @@ selfservice.controller('SelfservicePurchaseController', ['$scope', '$state', 'Ke
 
     // Submit current input
     $scope.onConfirm = function() {
+
+      if($scope.confirm_blocked) {
+        return;
+      }
+
       if($scope.input_text){
+
+        $scope.confirm_blocked = true;
+        $timeout($scope.unblockConfirm, 1000);
 
         // TODO: This temporary hack should be done right
         if($scope.input_text == 'CHECKOUT'){

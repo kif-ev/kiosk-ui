@@ -7,11 +7,6 @@ admin.controller('AdminCustomerDetailsController', ['$scope', '$state', '$stateP
 
     $scope.customer;
 
-    // User balance format
-    $scope.displayBalance= function(value) {
-      return (value/100).toFixed(2) + '€';
-    }
-
     $scope.handleCustomerResponse = function(item) {
       $scope.customer = item;
     }

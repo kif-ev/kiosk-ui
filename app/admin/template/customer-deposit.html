@@ -1,19 +1,45 @@
 <ol class="breadcrumb">
   <li><span class="glyphicon glyphicon-user"></span> <a ui-sref="admin.customers.list">Customers</a></li>
   <li><a ui-sref="admin.customers.details({customerId: customer.id})">{{customer.name}}</a></li>
-  <li>Deposit money</li>
+  <li>Deposit or withdraw money</li>
 </ol>
 
 <div class="row">
   <div class="col-xs-12 col-md-12">
 
-    <h2>Deposit money to {{customer.name}}</h2>
+    <h2>Deposit or withdraw money to {{customer.name}}</h2>
 
     <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
 
-    <form name="deposit_form" ng-submit="doDeposit()">
+    <form name="deposit_form" ng-submit="doDeposit(deposit_value)">
       <div class="form-group" ng-class="{'has-error': deposit_form.deposit_value.$invalid}">
-        <label for="deposit_value">Enter amount to add to customer account</label>
+
+        Current balance: <b>{{displayBalance(customer.balance)}}</b>
+
+        <hr/>
+
+        <h3>Deposit or withdraw?</h3>
+        <div class="btn-group">
+          <label class="btn btn-default" ng-model="deposit_mode" btn-radio="'deposit'"><span class="glyphicon glyphicon-plus"></span> Deposit</label>
+          <label class="btn btn-default" ng-model="deposit_mode" btn-radio="'withdraw'"><span class="glyphicon glyphicon-minus"></span> Withdraw</label>
+        </div>
+
+        <hr/>
+
+        <h3>Use a predefined amount</h3>
+        <div class="btn-group" role="group" id="deposit_buttons">
+          <button type="button" class="btn btn-default" ng-click="doDeposit(5)">5€</button>
+          <button type="button" class="btn btn-default" ng-click="doDeposit(10)">10€</button>
+          <button type="button" class="btn btn-default" ng-click="doDeposit(15)">15€</button>
+          <button type="button" class="btn btn-default" ng-click="doDeposit(20)">20€</button>
+          <button type="button" class="btn btn-default" ng-click="doDeposit(30)">30€</button>
+          <button type="button" class="btn btn-default" ng-click="doDeposit(40)">40€</button>
+          <button type="button" class="btn btn-default" ng-click="doDeposit(50)">50€</button>
+        </div>
+
+        <hr/>
+
+        <h3>Set a custom amount</h3>
         <div class="input-group">
           <span class="input-group-addon">€</span>
           <input type="number" class="form-control" name="deposit_value" ng-model="deposit_value" placeholder="0.00" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" required>
@@ -21,8 +47,15 @@
         <span class="help-block" ng-show="deposit_form.deposit_value.$invalid">
           Invalid number. Please edit.
         </span>
+
+        <button type="submit" class="btn btn-default">Add to account</button>
+
+        <hr/>
+
+        <h3>Set account to zero</h3>
+        <button type="button" class="btn btn-warning" ng-click="doZeroAccount()">Set account to 0€</button>
       </div>
-      <button type="submit" class="btn btn-default">Add to account</button>
+
     </form>
 
   </div>

@@ -2,8 +2,10 @@
 
 var admin = angular.module('kiosk-ui.admin');
 
-admin.controller('AdminParentController', ['$scope', '$state', 'CartService', 'CartItem', 'Cart', 'Product', 'ProductService', 'Customer', 'IdentifierService',
-  function($scope, $state, CartService, CartItem, Cart, Product, ProductService, Customer, IdentifierService) {
+admin.controller('AdminParentController', ['$scope', '$state', 'CartService', 'CartItem', 'Cart', 'Product', 'ProductService', 'Customer', 'IdentifierService', 'AppVersion',
+  function($scope, $state, CartService, CartItem, Cart, Product, ProductService, Customer, IdentifierService, AppVersion) {
+
+    $scope.version = AppVersion.version;
 
     $scope.admin_tabs = [
       {
@@ -17,7 +19,11 @@ admin.controller('AdminParentController', ['$scope', '$state', 'CartService', 'C
       {
         heading: 'Products',
         route:   'admin.products'
-      }
+      },
+      {
+        heading: 'Transactions',
+        route:   'admin.transactions.list'
+      },
     ];
 
   }]

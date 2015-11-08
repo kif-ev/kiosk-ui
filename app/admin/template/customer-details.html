@@ -16,10 +16,10 @@
 
     <button ui-sref="admin.customers.deposit({customerId: customer.id})" class="btn btn-default">
       <span class="glyphicon glyphicon-euro"></span>
-      Deposit money to account
+      Deposit or withdraw money
     </button>
-    
-    <button class="btn btn-default">
+
+    <button ui-sref="admin.transactions.list({userId: customer.id})" class="btn btn-default">
       <span class="glyphicon glyphicon-list-alt"></span>
       View past transactions
     </button>

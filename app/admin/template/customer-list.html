@@ -2,7 +2,12 @@
   <li><span class="glyphicon glyphicon-user"></span> Customers</li>
 </ol>
 
-<p>
-  Sorry, but listing all customers is not supported yet.
-  Please search for a specific customer using the customer identifier.
-</p>
+<div class="row">
+  <div class="col-xs-12 col-md-12">
+    <table class="table table-striped table-hover">
+      <tr style="cursor: pointer;" ng-repeat="customer in customers" ui-sref="admin.customers.details({customerId: customer.id})">
+        <td>{{customer.id}}</td><td>{{customer.name}}</td><td>{{displayBalance(customer.balance)}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

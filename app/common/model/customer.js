@@ -25,7 +25,7 @@ common.factory('Customer', function () {
   }
 
   // Static method to create a customer entity from a JSON string
-  Customer.fromJson = function(data) {
+  Customer.fromJsonSingle = function(data) {
 
     // Deserialized input data
     var input = angular.fromJson(data);
@@ -39,6 +39,33 @@ common.factory('Customer', function () {
     }
 
     return item;
+  }
+
+  // Static method to create an array of multiple customer entities from a JSON string
+  Customer.fromJsonMultiple = function(data) {
+
+    // Deserialized input data
+    var input = angular.fromJson(data);
+
+    // Array to store results
+    var result = new Array();
+
+    // Iterate through all values
+    for(var i = 0; i < input.length; i++) {
+
+      // Create new product from input
+      var item = new Customer(input[i].id, input[i].name, input[i].balance);
+
+      // If one item is invalid, return null immediately
+      if(!item.isValid()) {
+        return null;
+      }
+
+      // Push the item to the result array
+      result.push(item);
+    }
+
+    return result;
   }
 
   return Customer;

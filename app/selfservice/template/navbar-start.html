@@ -2,10 +2,10 @@
   <div class="container-fluid">
     <ul class="nav navbar-nav navbar-left" ng-if="input_text">
       <input type="text" readonly value="{{input_text}}"></input>
-      <button type="button" class="btn btn-primary navbar-btn">
+      <button type="button" class="btn btn-primary navbar-btn" ng-click="onConfirm()">
         <kbd>⏎</kbd> Scan
       </button>
-      <button type="button" class="btn btn-warning navbar-btn">
+      <button type="button" class="btn btn-warning navbar-btn" ng-click="onCancel()">
         <kbd>×</kbd> Clear
       </button>
     </ul>

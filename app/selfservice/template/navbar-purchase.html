@@ -2,21 +2,21 @@
   <div class="container-fluid">
     <ul class="nav navbar-nav navbar-left" ng-if="input_text">
       <input type="text" readonly value="{{input_text}}"></input>
-      <button type="button" class="btn btn-primary navbar-btn">
-        <kbd>⏎</kbd> Scan
+      <button type="button" class="btn btn-primary navbar-btn" ng-click="onConfirm()">
+        <kbd>⏎/Enter</kbd> Scan
       </button>
-      <button type="button" class="btn btn-warning navbar-btn">
-        <kbd>×</kbd> Clear
+      <button type="button" class="btn btn-warning navbar-btn" ng-click="onCancel()">
+        <kbd>×/*</kbd> Clear
       </button>
     </ul>
 
     <ul class="nav navbar-nav navbar-right" ng-if="!input_text">
-      <button type="button" class="btn btn-warning navbar-btn">
-        <kbd>×</kbd> Cancel
+      <button type="button" class="btn btn-warning navbar-btn" ng-click="onCancel()">
+        <kbd>×/*</kbd> Cancel
       </button>
 
-      <button type="button" class="btn btn-success navbar-btn">
-        <kbd>⏎</kbd> Checkout
+      <button type="button" class="btn btn-success navbar-btn" ng-click="onConfirm()">
+        <kbd>⏎/Enter</kbd> Checkout
       </button>
     </ul>
   </div>

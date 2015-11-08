@@ -2,10 +2,12 @@
 
 var selfservice = angular.module('kiosk-ui.selfservice');
 
-selfservice.controller('SelfserviceStartController', ['$scope', '$state', 'CartService', 'CartItem', 'Product', 'ProductService', 'Customer', 'IdentifierService', 'KeypadInputService',
-  function($scope, $state, CartService, CartItem, Product, ProductService, Customer, IdentifierService, KeypadInputService) {
+selfservice.controller('SelfserviceStartController', ['$scope', '$state', 'CartService', 'CartItem', 'Product', 'ProductService', 'Customer', 'IdentifierService', 'KeypadInputService', 'AppVersion',
+  function($scope, $state, CartService, CartItem, Product, ProductService, Customer, IdentifierService, KeypadInputService, AppVersion) {
 
     KeypadInputService.setScope($scope);
+
+    $scope.version = AppVersion.version;
 
     $scope.onIncrease = function() {
       // There is nothing to do here

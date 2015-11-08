@@ -1,0 +1,16 @@
+<ol class="breadcrumb">
+  <li><span class="glyphicon glyphicon-user"></span> Transactions</li>
+</ol>
+
+<div class="row">
+  <div class="col-xs-12 col-md-12">
+    <table class="table table-striped table-hover">
+      <tr style="cursor: pointer;" ng-repeat="transaction in transactions | orderBy:'-getTimestamp()'" ui-sref="admin.transactions.details({transactionId: transaction.id})">
+        <td>{{transaction.id}}</td>
+        <td>{{transaction.user_name}}</td>
+        <td>{{displayBalance(transaction.amount)}}</td>
+        <td>{{displayTime(transaction.created_at)}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

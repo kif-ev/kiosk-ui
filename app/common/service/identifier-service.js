@@ -25,7 +25,7 @@ common.service('IdentifierService', ['$http', 'AppConfig', 'Product', 'Customer'
         // If this is a customer, return a customer item
         // Current API returns type 'user', will probably change.
         if(result.type == 'user'){
-          return Customer.fromJson(data);
+          return Customer.fromJsonSingle(data);
         }
 
         return null;

@@ -74,6 +74,7 @@ angular.module('kiosk-ui.admin', [
           views: {
             '': {
               templateUrl: 'admin/template/customer-list.html',
+              controller: 'AdminCustomerListController'
             }
           }
         })
@@ -113,6 +114,33 @@ angular.module('kiosk-ui.admin', [
             '': {
               templateUrl: 'admin/template/products.html',
               controller: 'AdminProductsController'
+            }
+          }
+        })
+
+        .state('admin.transactions', {
+
+          // Base URL for this state and all substates
+          url: '/transactions',
+          abstract: true,
+
+          views: {
+            '': {
+              templateUrl: 'admin/template/transactions.html',
+              controller: 'AdminTransactionsController'
+            }
+          }
+        })
+
+        .state('admin.transactions.list', {
+
+          // Base URL for this state and all substates
+          url: '?userId',
+
+          views: {
+            '': {
+              templateUrl: 'admin/template/transaction-list.html',
+              controller: 'AdminTransactionListController'
             }
           }
         })
